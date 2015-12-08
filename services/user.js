@@ -7,23 +7,13 @@ angular.module('chumFirebase')
         user = {};
     
     if (authData){
-      user = {
-        id: authData.google.id,
-        name: authData.google.displayName,
-        avatar: authData.google.profileImageURL
-      };
-      ContactService.setEmailAndToken(authData.google.email, authData.google.accessToken);
+      setUserData();
     }
     
     this.isLoggedIn = function(){
       authObj.$onAuth(function(authData) {
         if (authData) {
-          user = {
-            id: authData.google.id,
-            name: authData.google.displayName,
-            avatar: authData.google.profileImageURL
-          };
-          ContactService.setEmailAndToken(authData.google.email, authData.google.accessToken);
+          setUserData();
         } else {
           $location.path('login');
           authData = {};
@@ -39,6 +29,7 @@ angular.module('chumFirebase')
       authObj.$authWithOAuthPopup("google", {
         scope: 'https://www.googleapis.com/auth/contacts.readonly'
       }).then(function(authData) {
+        setUserData();
         $location.path('home');
       }).catch(function(error) {
         console.error("Authentication failed:", error);
@@ -48,6 +39,15 @@ angular.module('chumFirebase')
     this.logout = function(){
       authObj.$unauth();
       $location.path('login');
+    }
+    
+    function setUserData(){
+      user = {
+        id: authData.google.id,
+        name: authData.google.displayName,
+        avatar: authData.google.profileImageURL
+      };
+      ContactService.setEmailAndToken(authData.google.email, authData.google.accessToken);
     }
     
   });

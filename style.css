@@ -17,6 +17,10 @@ i {
   color: #333;
 }
 
+small {
+  color: #ddd;
+}
+
 .fa-heart {
   color: green;
   animation: pulse 0.25s linear;

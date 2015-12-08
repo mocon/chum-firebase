@@ -3,7 +3,7 @@ angular.module('chumFirebase')
     
     var userEmail,
         userToken,
-        maxResults = 5;
+        maxResults = 10;
     
     this.setEmailAndToken = function(email, token){
       userEmail = email;

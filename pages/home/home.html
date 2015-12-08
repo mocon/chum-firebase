@@ -7,7 +7,7 @@
     <input ng-model="query" ng-change="searchContacts(query)" type="text" class="form-control" placeholder="Search contacts...">
   </div>
   <ul ng-show="query !== ''">
-    <li ng-repeat="contact in contactResults" ng-hide="!contact.gd$phoneNumber[0].$t">{{ contact.title.$t }} ({{ contact.gd$phoneNumber[0].$t }})</li>
+    <li ng-repeat="contact in contactResults" ng-hide="!contact.gd$phoneNumber[0].$t" ng-click="addContact(contact)">{{ contact.title.$t }} <small>{{ contact.gd$phoneNumber[0].$t | tel }}</small></li>
   </ul>
   <hr>
   <p>

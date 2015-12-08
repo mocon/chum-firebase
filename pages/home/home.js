@@ -15,6 +15,14 @@ angular.module('chumFirebase')
       }
     }
     
+    $scope.addContact = function(contact){
+      var newContact = {
+        name: contact.title.$t,
+        phoneNumber: contact.gd$phoneNumber[0].$t
+      };
+      console.log(newContact);
+    }
+    
     $scope.logout = function(){
       UserService.logout();
     }
