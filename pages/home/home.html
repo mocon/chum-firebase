@@ -1,0 +1,16 @@
+<div ng-controller="homeCtrl">
+  <h1>Home Page</h1>
+  <img ng-src="{{ userData.avatar }}" alt="{{ userData.displayName }}" class="avatar">
+  <p>Welcome, {{ userData.name }}! You are logged in.</p>
+  <hr>
+  <div class="form-group">
+    <input ng-model="query" ng-change="searchContacts(query)" type="text" class="form-control" placeholder="Search contacts...">
+  </div>
+  <ul ng-show="query !== ''">
+    <li ng-repeat="contact in contactResults" ng-hide="!contact.gd$phoneNumber[0].$t">{{ contact.title.$t }} ({{ contact.gd$phoneNumber[0].$t }})</li>
+  </ul>
+  <hr>
+  <p>
+    <button ng-click="logout()" type="button" class="btn btn-default btn-lg"><i class="fa fa-logout"></i> Log Out</button>
+  </p>
+</div>
